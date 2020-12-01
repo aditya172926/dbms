@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="\static\accounts\style.css">
+
+    {% block head %}
+    <title>Base</title>
+    {% endblock %}
+
+</head>
+
+<body>
+        <div class="navigation">
+            <div class="container">
+              <nav class="nav">
+                <div class="nav__hamburger">
+                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                  </svg>
+                </div>
+      
+                <div class="nav__menu">
+                  <div class="menu__top">
+                    <span class="nav__category">University</span>
+                    <a href="#" class="close__toggle">
+                      <svg>
+                        <use xlink:href="./images/sprite.svg#icon-cross"></use>
+                      </svg>
+                    </a>
+                  </div>
+                  {% if user.is_authenticated %}
+                  <ul class="nav__list">
+                    <li class="nav__item">
+                      <a href="{% url 'studentform' %}" class="nav__link scroll-link">Student</a>
+                    </li>
+                    <li class="nav__item">
+                      <a href="{% url 'facultyform' %}" class="nav__link">Faculty</a>
+                    </li>
+                    <li class="nav__item">
+                      <a href="{% url 'view_profile' %}" class="nav__link">Profile</a>
+                    </li>
+                    <li class="nav__item">
+                      <a href="http://127.0.0.1:8000/admin" class="nav__link">Admin</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="{% url 'logout' %}" class="nav__link">Logout</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="{% url 'edit_profile' %}" class="nav__link">Edit Profile</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="{% url 'change_password' %}" class="nav__link">Change Password</a>
+                    </li>
+                  </ul>
+                  {% else %}
+                  <ul class="nav__list">
+                    <li class="nav__item">
+                      <a href="{% url 'login' %}" class="nav__link scroll-link">Login</a>
+                    </li>
+                    <li class="nav__item">
+                      <a href="{% url 'register' %}" class="nav__link">Register</a>
+                    </li>
+                    <li class="nav__item">
+                      <a href="{% url 'reset_password' %}" class="nav__link">Reset Password</a>
+                    </li>
+                  </ul>
+                  {% endif %}
+                </div>
+              </nav>
+            </div>
+          </div>
+          <br>
+    <div class="container">
+        {% block body %}
+        <h1>BAse</h1>
+        {% endblock %}
+    </div>
+</body>
+
+</html>
